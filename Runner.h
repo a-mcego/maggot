@@ -105,7 +105,7 @@ struct Runner
         void Print()
         {
             cout << instdefs[int(type)].name << ": ";
-            for(int i=0; i<id_params.size(); ++i)
+            for(size_t i=0; i<id_params.size(); ++i)
                 cout << (i>0?",":"") << id_params[i];
             cout << " params, str_param=" << str_param << ", i64_param=" << i64_param << ", f64_param=" << f64_param << endl;
         }
@@ -121,7 +121,7 @@ struct Runner
         {
             vector<Instruction> newcode;
             size_t oldsize=code.size();
-            for(int i=0; i<code.size();)
+            for(size_t i=0; i<code.size();)
             {
                 auto& ins1 = code[i];
                 auto& ins2 = code[i+1];
@@ -148,7 +148,7 @@ struct Runner
     void CodeRun()
     {
         cout << "Code has " << code.size() << " instructions." << endl;
-        for(int c_id=0; c_id<code.size(); ++c_id)
+        for(size_t c_id=0; c_id<code.size(); ++c_id)
         {
             auto& c = code[c_id];
             /*cout << registers.size() << " registers: " << endl;
@@ -208,12 +208,12 @@ struct Runner
                 string funcname = registers[c.id_params[0]].data_string;
                 if (funcname == "print")
                 {
-                    for(int i=1; i<c.id_params.size(); ++i)
+                    for(size_t i=1; i<c.id_params.size(); ++i)
                         cout << registers[c.id_params[i]].ToString();
                 }
                 else if (funcname == "println")
                 {
-                    for(int i=1; i<c.id_params.size(); ++i)
+                    for(size_t i=1; i<c.id_params.size(); ++i)
                         cout << registers[c.id_params[i]].ToString();
                     cout << endl;
                 }
@@ -365,7 +365,7 @@ struct Runner
         else if (node.data == "#factor")
         {
             code.push_back(Instruction{.type=Instruction::TYPE::MOVE, .id_params={node.children[0], node.id}});
-            for(int i=1; i<node.children.size(); i+=2)
+            for(size_t i=1; i<node.children.size(); i+=2)
             {
                 auto& op = ast.Get(ast.Get(node.children[i]).children[0]);
                 //auto& value = ast.Get(node.children[i+1]);
@@ -384,7 +384,7 @@ struct Runner
         else if (node.data == "#term")
         {
             code.push_back(Instruction{.type=Instruction::TYPE::MOVE, .id_params={node.children[0], node.id}});
-            for(int i=1; i<node.children.size(); i+=2)
+            for(size_t i=1; i<node.children.size(); i+=2)
             {
                 auto& op = ast.Get(ast.Get(node.children[i]).children[0]);
                 //auto& value = ast.Get(node.children[i+1]);

@@ -12,7 +12,7 @@ consteval u64 name1(const char(&c)[STRLEN])
 {
     static_assert(STRLEN <= 18);
     u64 ret = 0;
-    for (i64 i = 0; i < STRLEN; i += 2)
+    for (u64 i = 0; i < STRLEN; i += 2)
         ret = (ret * 128) + int(c[i]);
     return ret;
 }
@@ -21,7 +21,7 @@ consteval u64 name2(const char(&c)[STRLEN])
 {
     static_assert(STRLEN <= 18);
     u64 ret = 0;
-    for (i64 i = 1; i < STRLEN; i += 2)
+    for (u64 i = 1; i < STRLEN; i += 2)
         ret = (ret * 128) + int(c[i]);
     return ret;
 }

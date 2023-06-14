@@ -25,3 +25,15 @@ string ToString(T key)
 	sstr << key;
 	return sstr.str();
 }
+
+template<typename T>
+T Concat(const vector<T>& lines, T linefeed)
+{
+    T ret;
+    for(auto& line: lines)
+    {
+        ret += line;
+        ret += linefeed;
+    }
+    return ret;
+}

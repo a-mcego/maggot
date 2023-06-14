@@ -109,12 +109,12 @@ vector<Token> Tokenize(const string& source, const string& grammar)
 			}
 			else
 			{
-				if (found_tokens[0].data.length() < matches.length())
+				if (found_tokens[0].data.length() < (size_t)matches.length())
 				{
 					found_tokens.clear();
 					found_tokens.push_back(new_token);
 				}
-				else if (found_tokens[0].data.length() == matches.length())
+				else if (found_tokens[0].data.length() == (size_t)matches.length())
 				{
 					found_tokens.push_back(new_token);
 				}
@@ -143,7 +143,7 @@ vector<Token> Tokenize(const string& source, const string& grammar)
 void Main(const vector<string>& args)
 {
     if (args.size() != 2)
-        KILL("Give .mag file as param.");
+        KILL("Give maggot file as param.");
 
     auto lines = GetLines(args[1]);
 
@@ -164,12 +164,7 @@ void Main(const vector<string>& args)
 
     Bracer::AddBraces(lines);
 
-    string totalcode;
-    for(auto& line: lines)
-    {
-        totalcode += line;
-        totalcode += "\n";
-    }
+    string totalcode = Concat<string>(lines, "\n");
 
     auto LoadGrammar = [](string name)->string
     {

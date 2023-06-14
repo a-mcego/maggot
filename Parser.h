@@ -47,8 +47,8 @@ struct AST
     void Finalize()
     {
         map<RID,RID> id_mapping;
-        for(int i=0; i<nodes.size(); ++i)
-            id_mapping[nodes[i].id] = RID{i};
+        for(size_t i=0; i<nodes.size(); ++i)
+            id_mapping[nodes[i].id] = RID{i64(i)};
 
         for(Node& node: nodes)
         {
@@ -130,20 +130,22 @@ struct Grammar
         return (t.name[0] >= 'A' && t.name[0] <= 'Z');
     }
 
+    using TokenPos = size_t;
+
     struct ParseResult
     {
         RID rid{-1}; //ID of the AST node
-        int token_pos{0}; //what is the new position in the tokens array
+        TokenPos token_pos{0}; //what is the new position in the tokens array
     };
 
-    ParseResult Recurse(vector<Token>& tokens, int start_token_position, ChunkToken considered)
+    ParseResult Recurse(vector<Token>& tokens, TokenPos start_token_position, ChunkToken considered)
     {
         auto& defs = definitions[considered.name];
         //cout << start_token_position << ": " << considered.name << endl;
         //go through all definitions, try them one by one
         for (u64 def_n=0; def_n<defs.size(); ++def_n)
         {
-            int def_token_position = start_token_position;
+            TokenPos def_token_position = start_token_position;
             //cout << "init chunk_token_position to: " << def_token_position << endl;
             RID astnode_id = ast.NewNode();
 
@@ -157,7 +159,7 @@ struct Grammar
                     auto& chunk = currdef.chunks[chunk_n];
 
                     auto& limits = detlimits[(int)chunk.type];
-                    int chunk_token_position = def_token_position;
+                    TokenPos chunk_token_position = def_token_position;
                     //cout << "init chunk_token_position to: " << chunk_token_position << endl;
 
                     //cout << "Chunk " << chunk_n << " limits: " << limits.min << "|" << limits.max << endl;
@@ -172,7 +174,7 @@ struct Grammar
                         }
                         vector<RID> chunk_repeat_results;
                         bool result_good{true};
-                        int token_token_position = chunk_token_position;
+                        TokenPos token_token_position = chunk_token_position;
                         //cout << "init token_token_position to: " << token_token_position << endl;
                         //one chunk run
                         [&]()->void
@@ -324,7 +326,7 @@ struct Grammar
                 else if (def_elem.children.size() >= 4)
                 {
                     Chunk c;
-                    for(int i=1; i<def_elem.children.size()-2; ++i)
+                    for(size_t i=1; i<def_elem.children.size()-2; ++i)
                     {
                         AST::Node& inner_def_elem = ast.Get(def_elem.children[i]);
                         AST::Node& token = ast.Get(inner_def_elem.children.back());
