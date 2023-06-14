@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="maggot" />
+		<Option pch_mode="2" />
+		<Option compiler="gnu_gcc_newest_compiler" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/maggot" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/" />
+				<Option type="1" />
+				<Option compiler="gnu_gcc_newest_compiler" />
+				<Compiler>
+					<Add option="-O3 -s -std=c++20" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="Bracer.h" />
+		<Unit filename="Global.h" />
+		<Unit filename="Parser.h" />
+		<Unit filename="Runner.h" />
+		<Unit filename="RunningID.cpp" />
+		<Unit filename="RunningID.h" />
+		<Unit filename="Util.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

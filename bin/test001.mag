@@ -1,0 +1,10 @@
+struct @Point
+   @f64 x
+   @f64 y
+
+println('Hello world!')
+@i64 sum1 = 2+3
+@i64 sum2 = 2*sum1
+println('Sum is ', sum1, '. Second sum is ',sum2)
+@f64 floatnum = 5.0+3.0*2.3
+println('float! ', floatnum)

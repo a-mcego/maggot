@@ -1,0 +1,19 @@
+//standard operators:
+//+ - * / %
+//
+
+Point = struct{T}
+	T x
+	T y
+	T z
+
+Length = proc(Point{T} p)(T)
+	return p.x*p.x + p.y+p.y + p.z+p.z
+
+
+main = proc()->(int)
+	i64 var = 3
+	
+	Point{f32} p = (1.0,2.0,3.0)
+	
+	return 0

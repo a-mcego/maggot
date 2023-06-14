@@ -1,0 +1,36 @@
+literal = LITERAL_I64
+literal = LITERAL_F64
+literal = LITERAL_STRING
+primary = NAME_IDENTIFIER
+primary = literal
+primary = !PAREN_LEFT expression !PAREN_RIGHT
+
+op_unary = OP_NEGATE
+
+unary = op_unary unary
+unary = primary
+
+op_factor = OP_MUL
+op_factor = OP_DIV
+factor = unary (op_factor unary)*	
+
+op_term = OP_PLUS
+op_term = OP_MINUS
+term = factor (op_term factor)*
+
+comparison = term (OP_COMPARE term)?
+
+expression = comparison
+
+argument_list = expression (!COMMA expression)*
+function_call = NAME_IDENTIFIER !PAREN_LEFT (argument_list)? !PAREN_RIGHT
+var_declaration = TYPE_IDENTIFIER NAME_IDENTIFIER (!OP_ASSIGN expression)?
+
+struct_name = TYPE_IDENTIFIER
+struct_members = (var_declaration !STATEMENT_END)+
+struct_declaration = !KEYWORD_STRUCT struct_name !CURLY_LEFT struct_members !CURLY_RIGHT
+
+statement = struct_declaration
+statement = function_call !STATEMENT_END
+statement = var_declaration !STATEMENT_END
+root = (statement)*

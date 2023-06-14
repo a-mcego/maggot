@@ -1,0 +1,19 @@
+proc main()->(@i64)
+	//meaningful whitespace like in python
+	
+	print('Hello world!') //strings delimited with ''
+	
+	@i64 sum1 = 2+2 //variables declared like in C
+	
+	mut @i64 sum2 //variables are implicitly const, this one needs to be mutable
+	sum2 = sum1+5
+	
+	print('Sum is {sum1}. Second sum is {sum2}') //they work like f-strings in python
+	
+	if sum1==5
+		print('Sum is 5!')
+	else
+		print('Sum is not 5!')
+
+	return 1
+    

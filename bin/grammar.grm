@@ -1,0 +1,10 @@
+num_determiner = N0INF
+num_determiner = N1INF
+num_determiner = N01
+token = TERMINAL
+token = NONTERMINAL
+def_elem = (IGNORE)? token
+def_elem = LEFT (def_elem)+ RIGHT num_determiner
+definition = (def_elem)+
+line = NONTERMINAL EQ definition
+root = (line LINEFEED)+

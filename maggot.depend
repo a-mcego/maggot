@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1686730930 source:c:\users\megis\dropbox\koodaus2\github\maggot\main.cpp
+	"Global.h"
+	<regex>
+	"Parser.h"
+	"Runner.h"
+
+1685997465 c:\users\megis\dropbox\koodaus2\github\maggot\global.h
+	<iostream>
+	<vector>
+	<string>
+	<fstream>
+	<regex>
+	<algorithm>
+	<map>
+	<cstdint>
+
+1686350358 c:\users\megis\dropbox\koodaus2\github\maggot\parser.h
+	"RunningID.h"
+	"Util.h"
+
+1686567543 c:\users\megis\dropbox\koodaus2\github\maggot\runningid.h
+	"StrongTypedef.h"
+
+1686065698 c:\users\megis\dropbox\koodaus2\github\maggot\strongtypedef.h
+
+1686169578 source:c:\users\megis\dropbox\koodaus2\github\maggot\runningid.cpp
+	"Global.h"
+	"RunningID.h"
+
+1686730934 c:\users\megis\dropbox\koodaus2\github\maggot\runner.h
+	"Parser.h"
+
+1686247845 c:\users\megis\dropbox\koodaus2\github\maggot\util.h
+	<sstream>
+	<type_traits>
+
